@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Application Root & Routing Configuration
+ * EDU GUARD AI — Application Root & Routing Configuration
  */
 
 import React from 'react';
@@ -20,6 +20,8 @@ import ReportsPage from './pages/ReportsPage';
 import SettingsPage from './pages/SettingsPage';
 import DatabasePage from './pages/DatabasePage';
 
+import { SidebarProvider } from './context/SidebarContext';
+
 function ProtectedLayout() {
   const { isAuthenticated, loading } = useAuth();
 
@@ -36,7 +38,7 @@ function ProtectedLayout() {
           fontSize: '0.9rem',
         }}
       >
-        Initializing EDU CARD AI workspace...
+        Initializing EDU GUARD AI workspace...
       </div>
     );
   }
@@ -46,21 +48,23 @@ function ProtectedLayout() {
   }
 
   return (
-    <div className="app-shell">
-      <Sidebar />
-      <Routes>
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/students" element={<StudentsPage />} />
-        <Route path="/students/:id" element={<StudentDetailPage />} />
-        <Route path="/alerts" element={<AlertsPage />} />
-        <Route path="/interventions" element={<InterventionsPage />} />
-        <Route path="/analytics" element={<AnalyticsPage />} />
-        <Route path="/reports" element={<ReportsPage />} />
-        <Route path="/database" element={<DatabasePage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </div>
+    <SidebarProvider>
+      <div className="app-shell">
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/students" element={<StudentsPage />} />
+          <Route path="/students/:id" element={<StudentDetailPage />} />
+          <Route path="/alerts" element={<AlertsPage />} />
+          <Route path="/interventions" element={<InterventionsPage />} />
+          <Route path="/analytics" element={<AnalyticsPage />} />
+          <Route path="/reports" element={<ReportsPage />} />
+          <Route path="/database" element={<DatabasePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+    </SidebarProvider>
   );
 }
 

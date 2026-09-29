@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Auth Context
+ * EDU GUARD AI — Auth Context
  */
 
 import React, { createContext, useContext, useState, useEffect } from 'react';

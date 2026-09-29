@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Advanced Multi-Metric Timeline Chart
+ * EDU GUARD AI — Advanced Multi-Metric Timeline Chart
  * Visualizes 16 weeks of engagement with personal baseline zone and detection marker
  */
 

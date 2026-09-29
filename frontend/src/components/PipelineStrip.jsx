@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Core Concept Pipeline Strip
+ * EDU GUARD AI — Core Concept Pipeline Strip
  * DETECT -> EXPLAIN -> ALERT -> SUPPORT -> HUMAN REVIEW
  */
 

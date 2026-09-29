@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Sidebar Navigation Component
+ * EDU GUARD AI — Sidebar Navigation Component
  */
 
 import React from 'react';
@@ -15,11 +15,14 @@ import {
   Sparkles,
   ShieldCheck,
   Database,
+  X,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useSidebar } from '../context/SidebarContext';
 
 export default function Sidebar() {
   const { user } = useAuth();
+  const { isOpen, closeSidebar } = useSidebar();
 
   const navItems = [
     { to: '/', label: 'Dashboard', icon: LayoutDashboard },
@@ -28,102 +31,118 @@ export default function Sidebar() {
     { to: '/interventions', label: 'Support Actions', icon: HeartHandshake },
     { to: '/analytics', label: 'Trends & Fairness', icon: BarChart3, hideFor: ['student'] },
     { to: '/reports', label: 'Audit Reports', icon: FileText, hideFor: ['student'] },
-    { to: '/database', label: 'SQLite DB', icon: Database },
+    { to: '/database', label: 'Database Hub', icon: Database },
     { to: '/settings', label: 'Settings & Policy', icon: Settings },
   ];
 
   const role = user?.role || 'student';
 
   return (
-    <aside
-      style={{
-        width: '260px',
-        backgroundColor: 'var(--bg-surface)',
-        borderRight: '1px solid var(--border-subtle)',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-        position: 'sticky',
-        top: 0,
-        zIndex: 20,
-      }}
-    >
-      {/* Brand Header */}
+    <>
+      {/* Mobile Drawer Backdrop */}
       <div
-        style={{
-          padding: '24px 20px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          borderBottom: '1px solid var(--border-subtle)',
-        }}
-      >
+        className={`sidebar-backdrop ${isOpen ? 'active' : ''}`}
+        onClick={closeSidebar}
+      />
+
+      <aside className={`app-sidebar ${isOpen ? 'open' : ''}`}>
+        {/* Brand Header */}
         <div
           style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '12px',
-            background: 'var(--brand-gradient)',
+            padding: '22px 20px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            color: '#FFFFFF',
-            boxShadow: '0 4px 12px rgba(79, 70, 229, 0.3)',
+            justifyContent: 'space-between',
+            borderBottom: '1px solid var(--border-subtle)',
           }}
         >
-          <Sparkles size={22} />
-        </div>
-        <div>
-          <div
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div
+              style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '12px',
+                background: 'var(--brand-gradient)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#FFFFFF',
+                boxShadow: '0 4px 12px rgba(79, 70, 229, 0.3)',
+                flexShrink: 0,
+              }}
+            >
+              <Sparkles size={20} />
+            </div>
+            <div>
+              <div
+                style={{
+                  fontWeight: 800,
+                  fontSize: '1.05rem',
+                  letterSpacing: '-0.02em',
+                  background: 'var(--brand-gradient)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                EDU GUARD AI
+              </div>
+              <div style={{ fontSize: '0.70rem', color: 'var(--text-muted)' }}>
+                Supportive Academic Monitoring
+              </div>
+            </div>
+          </div>
+
+          {/* Close button on mobile */}
+          <button
+            onClick={closeSidebar}
+            className="mobile-close-btn"
+            aria-label="Close Navigation"
             style={{
-              fontWeight: 800,
-              fontSize: '1.05rem',
-              letterSpacing: '-0.02em',
-              background: 'var(--brand-gradient)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              background: 'none',
+              border: 'none',
+              color: 'var(--text-secondary)',
+              cursor: 'pointer',
+              padding: '6px',
+              borderRadius: '8px',
             }}
           >
-            EDU CARD AI
-          </div>
-          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-            Supportive Academic Monitoring
-          </div>
+            <X size={20} />
+          </button>
         </div>
-      </div>
 
-      {/* Nav Links */}
-      <nav style={{ padding: '16px 12px', flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
-        {navItems
-          .filter((item) => !item.hideFor || !item.hideFor.includes(role))
-          .map((item) => {
-            const Icon = item.icon;
-            return (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === '/'}
-                style={({ isActive }) => ({
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  padding: '10px 14px',
-                  borderRadius: '10px',
-                  fontSize: '0.88rem',
-                  fontWeight: isActive ? 600 : 500,
-                  color: isActive ? '#FFFFFF' : 'var(--text-secondary)',
-                  backgroundColor: isActive ? 'var(--brand-primary)' : 'transparent',
-                  textDecoration: 'none',
-                  transition: 'all 0.15s ease',
-                  boxShadow: isActive ? '0 2px 8px rgba(79, 70, 229, 0.3)' : 'none',
-                })}
-              >
-                <Icon size={18} />
-                <span>{item.label}</span>
-              </NavLink>
-            );
-          })}
-      </nav>
+        {/* Nav Links */}
+        <nav style={{ padding: '16px 12px', flex: 1, display: 'flex', flexDirection: 'column', gap: '4px', overflowY: 'auto' }}>
+          {navItems
+            .filter((item) => !item.hideFor || !item.hideFor.includes(role))
+            .map((item) => {
+              const Icon = item.icon;
+              return (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  end={item.to === '/'}
+                  onClick={closeSidebar}
+                  style={({ isActive }) => ({
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    padding: '10px 14px',
+                    borderRadius: '10px',
+                    fontSize: '0.88rem',
+                    fontWeight: isActive ? 600 : 500,
+                    color: isActive ? '#FFFFFF' : 'var(--text-secondary)',
+                    backgroundColor: isActive ? 'var(--brand-primary)' : 'transparent',
+                    textDecoration: 'none',
+                    transition: 'all 0.15s ease',
+                    boxShadow: isActive ? '0 2px 8px rgba(79, 70, 229, 0.3)' : 'none',
+                  })}
+                >
+                  <Icon size={18} />
+                  <span>{item.label}</span>
+                </NavLink>
+              );
+            })}
+        </nav>
 
       {/* Ethics & Compliance Pill */}
       <div style={{ padding: '12px 16px' }}>
@@ -197,5 +216,6 @@ export default function Sidebar() {
         </div>
       </div>
     </aside>
+  </>
   );
 }

@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Mandatory Disclaimer Banner Component
+ * EDU GUARD AI — Mandatory Disclaimer Banner Component
  * Must be visible wherever an Early Support Indicator is displayed.
  */
 

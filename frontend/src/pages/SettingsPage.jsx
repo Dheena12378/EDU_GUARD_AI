@@ -83,7 +83,7 @@ export default function SettingsPage() {
               </h2>
             </div>
             <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', maxWidth: '720px' }}>
-              EDU CARD AI operates under strict non-punitive mandates: it never predicts student failure,
+              EDU GUARD AI operates under strict non-punitive mandates: it never predicts student failure,
               does not compute rank scores, and isolates all sensitive demographic attributes from the feature pipeline.
             </p>
           </div>

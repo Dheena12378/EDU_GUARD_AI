@@ -1,6 +1,7 @@
 /* ============================================================
-   EDU CARD AI — Design System & Stylesheet
+   EDU GUARD AI — Design System & Stylesheet
    Modern, Vibrant, Glassmorphic, Accessible
+   Responsive Hierarchy: Mobile (<768px), Tablet (768-1024px), Laptop (>1024px)
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -25,7 +26,7 @@
   --brand-gradient: linear-gradient(135deg, #4F46E5 0%, #06B6D4 100%);
   --brand-gradient-soft: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
 
-  /* Accessible Indicator Bands (Colour-blind safe: Teal/Emerald, Amber, Royal Purple) */
+  /* Accessible Indicator Bands (Colour-blind safe: Emerald, Amber, Royal Purple) */
   --band-low-text: #059669;
   --band-low-bg: #ECFDF5;
   --band-low-border: #A7F3D0;
@@ -111,6 +112,7 @@ body {
 .app-shell {
   display: flex;
   min-height: 100vh;
+  position: relative;
 }
 
 .main-content {
@@ -121,11 +123,123 @@ body {
   overflow-x: hidden;
 }
 
+/* ------------------------------------------------------------
+   Laptop / Desktop Navigation & Padding (> 1024px)
+   ------------------------------------------------------------ */
+.app-sidebar {
+  width: 260px;
+  min-width: 260px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.mobile-close-btn {
+  display: none !important;
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+.mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-menu-btn:hover {
+  background-color: var(--border-subtle);
+}
+
+.topbar {
+  height: 70px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 36px;
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  transition: padding 0.2s ease, height 0.2s ease;
+}
+
+.topbar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.topbar-badge {
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background-color: rgba(79, 70, 229, 0.1);
+  color: var(--brand-primary);
+  fontWeight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .page-container {
   padding: 28px 36px;
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
+  transition: padding 0.2s ease;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  transition: padding 0.2s ease;
+}
+
+/* Grid & Layout Utilities */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+/* Responsive Table Container */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-container table {
+  min-width: 660px;
 }
 
 /* Buttons */
@@ -239,3 +353,140 @@ body {
   background: var(--border-highlight);
   border-radius: 4px;
 }
+
+/* ============================================================
+   TABLET RESPONSIVE PADDING & LAYOUT (768px - 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+  /* Slide-over Drawer Sidebar */
+  .app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 100;
+    transform: translateX(-100%);
+    box-shadow: none;
+  }
+
+  .app-sidebar.open {
+    transform: translateX(0);
+    box-shadow: 0 0 36px rgba(0, 0, 0, 0.35);
+  }
+
+  .mobile-close-btn {
+    display: flex !important;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 90;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebar-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Tablet Specific Padding */
+  .topbar {
+    padding: 0 24px;
+    height: 66px;
+  }
+
+  .topbar-title {
+    font-size: 1.15rem;
+  }
+
+  .page-container {
+    padding: 20px 24px;
+  }
+
+  .glass-panel {
+    padding: 20px;
+  }
+
+  .login-wrapper {
+    padding: 28px 20px;
+  }
+
+  /* Convert 2-column split grids into stacked single columns on tablet */
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE PADDING & LAYOUT (< 768px)
+   ============================================================ */
+@media (max-width: 767px) {
+  /* Mobile Specific Compact Padding */
+  .topbar {
+    padding: 0 14px;
+    height: 60px;
+  }
+
+  .topbar-title {
+    font-size: 1.05rem;
+  }
+
+  .topbar-badge {
+    display: none; /* Hide contextual badge on small mobile to give room for role switcher */
+  }
+
+  .page-container {
+    padding: 14px 12px;
+  }
+
+  .glass-panel {
+    padding: 14px !important;
+    border-radius: 12px;
+  }
+
+  .login-wrapper {
+    padding: 16px 12px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    padding: 8px 14px;
+    font-size: 0.82rem;
+  }
+
+  /* Form & Actions Stacking */
+  .mobile-stack {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .mobile-full {
+    width: 100% !important;
+  }
+}
+

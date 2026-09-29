@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Student Profile & Early Support Hero Showcase
+ * EDU GUARD AI — Student Profile & Early Support Hero Showcase
  * Implements: DETECT -> EXPLAIN -> ALERT -> SUPPORT -> HUMAN REVIEW
  */
 

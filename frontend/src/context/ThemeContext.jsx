@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Theme Context (Dark / Light mode)
+ * EDU GUARD AI — Theme Context (Dark / Light mode)
  */
 
 import React, { createContext, useContext, useState, useEffect } from 'react';

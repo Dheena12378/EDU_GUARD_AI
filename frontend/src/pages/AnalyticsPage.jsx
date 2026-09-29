@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Analytics & Fairness Audit Page
+ * EDU GUARD AI — Analytics & Fairness Audit Page
  */
 
 import React, { useState, useEffect } from 'react';

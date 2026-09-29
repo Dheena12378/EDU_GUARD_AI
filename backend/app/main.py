@@ -1,5 +1,5 @@
 """
-EDU CARD AI — FastAPI Application Entry Point
+EDU GUARD AI — FastAPI Application Entry Point
 
 Run with:  python -m uvicorn backend.app.main:app --reload --port 8000
 """

@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Students Directory Page
+ * EDU GUARD AI — Students Directory Page
  */
 
 import React, { useState, useEffect } from 'react';
@@ -128,8 +128,8 @@ export default function StudentsPage() {
         </div>
 
         {/* Students Table */}
-        <div className="glass-panel" style={{ overflow: 'hidden' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+        <div className="glass-panel table-container">
+          <table style={{ width: '100%', minWidth: '720px', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr
                 style={{

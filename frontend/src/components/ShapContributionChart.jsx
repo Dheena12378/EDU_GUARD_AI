@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — SHAP Feature Contribution Diverging Chart
+ * EDU GUARD AI — SHAP Feature Contribution Diverging Chart
  * Visualizes which factors pull toward higher support need vs which factors protect/stabilize.
  */
 

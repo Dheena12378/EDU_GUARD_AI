@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Reports & Academic Review Page
+ * EDU GUARD AI — Reports & Academic Review Page
  */
 
 import React, { useState, useEffect } from 'react';
@@ -114,12 +114,12 @@ export default function ReportsPage() {
           </div>
 
           {/* Department Breakdown Table */}
-          <div>
+          <div className="table-container">
             <h2 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '12px' }}>
               Departmental Summary
             </h2>
 
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+            <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse', textAlign: 'left' }}>
               <thead>
                 <tr
                   style={{

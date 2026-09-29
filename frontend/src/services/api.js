@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — API Client
+ * EDU GUARD AI — API Client
  */
 
 import axios from 'axios';

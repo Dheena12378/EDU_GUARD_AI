@@ -1,5 +1,5 @@
 """
-EDU CARD AI — Application Configuration
+EDU GUARD AI — Application Configuration
 
 Loads settings from environment variables (.env) and YAML config files.
 """
@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
     # Application
-    APP_NAME: str = "EDU CARD AI"
+    APP_NAME: str = "EDU GUARD AI"
     DEBUG: bool = True
     CORS_ORIGINS: str = "http://localhost:5173,http://localhost:3000"
 

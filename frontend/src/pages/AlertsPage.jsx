@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Early Support Alerts Page
+ * EDU GUARD AI — Early Support Alerts Page
  */
 
 import React, { useState, useEffect } from 'react';

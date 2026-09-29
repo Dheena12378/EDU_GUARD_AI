@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Early Support Indicator Badge
+ * EDU GUARD AI — Early Support Indicator Badge
  * Colour-blind safe (Emerald, Amber, Royal Purple) — NEVER uses red as a student label.
  */
 

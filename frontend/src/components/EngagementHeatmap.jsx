@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — 16-Week Engagement Activity Heatmap
+ * EDU GUARD AI — 16-Week Engagement Activity Heatmap
  * Visualizes multi-dimensional engagement matrix over 16 academic weeks.
  * Instantly reveals the "Early Fade" pattern before assessment scores drop.
  */

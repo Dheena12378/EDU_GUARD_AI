@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Interactive Circular Support Gauge
+ * EDU GUARD AI — Interactive Circular Support Gauge
  * Visualizes calibrated probability across Low, Medium, and High bands
  * Color-blind safe: Emerald (0-30%), Amber (30-60%), Royal Purple (60-100%)
  */

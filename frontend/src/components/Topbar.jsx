@@ -1,16 +1,18 @@
 /**
- * EDU CARD AI — Topbar Component
- * Includes Event Demo Role Switcher, theme toggle, and current user actions.
+ * EDU GUARD AI — Topbar Component
+ * Includes Event Demo Role Switcher, theme toggle, mobile drawer toggle, and current user actions.
  */
 
 import React, { useState } from 'react';
-import { Sun, Moon, LogOut, ChevronDown, UserCircle2, Sparkles } from 'lucide-react';
+import { Sun, Moon, LogOut, ChevronDown, UserCircle2, Sparkles, Menu } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+import { useSidebar } from '../context/SidebarContext';
 
 export default function Topbar({ title = 'Dashboard' }) {
   const { user, logout, quickRoleSwitch } = useAuth();
   const { isDark, toggleTheme } = useTheme();
+  const { toggleSidebar } = useSidebar();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const demoRoles = [
@@ -28,38 +30,22 @@ export default function Topbar({ title = 'Dashboard' }) {
   };
 
   return (
-    <header
-      style={{
-        height: '70px',
-        backgroundColor: 'var(--bg-surface)',
-        borderBottom: '1px solid var(--border-subtle)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0 36px',
-        position: 'sticky',
-        top: 0,
-        zIndex: 15,
-      }}
-    >
+    <header className="topbar">
       {/* Title & Semester Context */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <h1 style={{ fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.01em' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        {/* Mobile / Tablet Drawer Toggle Button */}
+        <button
+          className="mobile-menu-btn"
+          onClick={toggleSidebar}
+          aria-label="Open menu"
+        >
+          <Menu size={22} />
+        </button>
+
+        <h1 className="topbar-title">
           {title}
         </h1>
-        <span
-          style={{
-            fontSize: '0.75rem',
-            padding: '3px 10px',
-            borderRadius: '20px',
-            backgroundColor: 'rgba(79, 70, 229, 0.1)',
-            color: 'var(--brand-primary)',
-            fontWeight: 700,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '4px',
-          }}
-        >
+        <span className="topbar-badge">
           <Sparkles size={12} /> Week 8 Active Monitoring
         </span>
       </div>

@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Comprehensive Sign In & Registration Portal
+ * EDU GUARD AI — Comprehensive Sign In & Registration Portal
  * Provides:
  * 1. 1-Click Event Demo Personas (Judges & Presentation)
  * 2. Individual Sign In for Each and Every Student (ST101-ST128) & Faculty
@@ -208,16 +208,7 @@ export default function LoginPage() {
   );
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        backgroundColor: 'var(--bg-primary)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '36px 20px',
-      }}
-    >
+    <div className="login-wrapper">
       <div style={{ maxWidth: '1080px', width: '100%' }}>
         {/* Portal Header */}
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
@@ -240,6 +231,7 @@ export default function LoginPage() {
           </div>
 
           <h1
+            className="login-portal-title"
             style={{
               fontSize: '2.6rem',
               fontWeight: 800,
@@ -250,7 +242,7 @@ export default function LoginPage() {
               WebkitTextFillColor: 'transparent',
             }}
           >
-            EDU CARD AI
+            EDU GUARD AI
           </h1>
           <p style={{ color: 'var(--text-secondary)', maxWidth: '640px', margin: '0 auto', fontSize: '0.94rem' }}>
             Detects early engagement shifts <strong>before</strong> exam scores drop.

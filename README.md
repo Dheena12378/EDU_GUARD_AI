@@ -1,4 +1,4 @@
-# EDU CARD AI — Proactive Academic Monitoring & Supportive Intervention
+# EDU GUARD AI — Proactive Academic Monitoring & Supportive Intervention
 
 > **AI-assisted academic monitoring system that detects early signs of declining student engagement BEFORE academic performance drops, explains why, alerts faculty/mentors, and suggests optional support actions.**
 
@@ -83,7 +83,7 @@ All 13 automated tests pass with 100% compliance:
 ## 🌟 The Hero Demonstration (ST101 — Aarav Sharma)
 1. **Week 1–4:** High baseline engagement (~91% attendance, ~95% assignments, 19 logins/week).
 2. **Week 5–8:** Noticeable engagement fade: LMS logins drop to 6/week (-42%), and assignment submission slopes turn downward. **Exam score is still 82%!**
-3. **Week 8 Detection:** EDU CARD AI detects the divergence and flags a **High Early Support Indicator** with plain-language explanations.
+3. **Week 8 Detection:** EDU GUARD AI detects the divergence and flags a **High Early Support Indicator** with plain-language explanations.
 4. **Supportive Intervention:** Faculty reviews the explanation, uses the **Counterfactual Simulator**, and initiates **Assignment Support & Flexible Extension** from the Playbook before grades drop in Week 13.
 
 # EDU_GUARD_AI

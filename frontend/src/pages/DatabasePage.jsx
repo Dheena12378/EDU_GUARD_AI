@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Interactive SQLite Database Explorer & Connection Hub
+ * EDU GUARD AI — Interactive Database Explorer & Connection Hub
  */
 
 import React, { useState, useEffect } from 'react';

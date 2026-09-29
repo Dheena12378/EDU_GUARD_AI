@@ -1,5 +1,5 @@
 /**
- * EDU CARD AI — Dashboard Page
+ * EDU GUARD AI — Dashboard Page
  */
 
 import React, { useState, useEffect } from 'react';
@@ -77,14 +77,7 @@ export default function DashboardPage() {
         <DisclaimerBanner />
 
         {/* Top KPI Cards Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '18px',
-            marginBottom: '28px',
-          }}
-        >
+        <div className="kpi-grid">
           <div className="glass-panel" style={{ padding: '20px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
@@ -155,7 +148,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Charts and Feeds Row */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: '24px', marginBottom: '28px' }}>
+        <div className="dashboard-grid">
           {/* Indicator Band Distribution */}
           <div className="glass-panel" style={{ padding: '24px' }}>
             <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '6px' }}>
