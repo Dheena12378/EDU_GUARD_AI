@@ -216,6 +216,85 @@ body {
   transition: padding 0.2s ease;
 }
 
+/* ============================================================
+   RESPONSIVE AUTH & INDIVIDUAL SIGN IN PORTAL
+   ============================================================ */
+.auth-container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-tabs-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.auth-tabs {
+  display: inline-flex;
+  padding: 4px;
+  background-color: var(--bg-surface-elevated);
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.auth-tab-btn {
+  padding: 9px 18px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  font-size: 0.84rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+/* Responsive Individual Sign In Grid */
+.individual-signin-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+  align-items: start;
+}
+
+.signin-directory-col {
+  order: 1;
+}
+
+.signin-form-col {
+  order: 2;
+}
+
+/* Demo Personas Grid */
+.demo-personas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+/* Form Two Column Row */
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
 /* Grid & Layout Utilities */
 .dashboard-grid {
   display: grid;
@@ -428,6 +507,20 @@ body {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+
+  /* Individual Sign In responsive stacking on tablet */
+  .individual-signin-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .signin-form-col {
+    order: 1; /* Prioritize credentials login form on tablet */
+  }
+
+  .signin-directory-col {
+    order: 2;
+  }
 }
 
 /* ============================================================
@@ -459,6 +552,54 @@ body {
 
   .login-wrapper {
     padding: 16px 12px;
+  }
+
+  .login-portal-title {
+    font-size: 1.85rem !important;
+  }
+
+  /* Individual Sign In on Mobile */
+  .auth-tabs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .auth-tab-btn {
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 0.84rem;
+  }
+
+  .individual-signin-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .signin-form-col {
+    order: 1; /* Form first on mobile */
+  }
+
+  .signin-directory-col {
+    order: 2;
+  }
+
+  .form-row-2col {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .auth-footer-banner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    font-size: 0.74rem !important;
+  }
+
+  /* Prevent iOS zoom on input focus */
+  .input-field {
+    font-size: 16px;
   }
 
   .kpi-grid {

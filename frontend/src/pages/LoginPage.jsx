@@ -209,9 +209,9 @@ export default function LoginPage() {
 
   return (
     <div className="login-wrapper">
-      <div style={{ maxWidth: '1080px', width: '100%' }}>
+      <div className="auth-container">
         {/* Portal Header */}
-        <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+        <div className="auth-header">
           <div
             style={{
               display: 'inline-flex',
@@ -251,32 +251,14 @@ export default function LoginPage() {
         </div>
 
         {/* Top 3-Way Tab Switcher */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              padding: '4px',
-              backgroundColor: 'var(--bg-surface-elevated)',
-              borderRadius: '14px',
-              border: '1px solid var(--border-subtle)',
-              flexWrap: 'wrap',
-              gap: '4px',
-            }}
-          >
+        <div className="auth-tabs-wrapper">
+          <div className="auth-tabs">
             <button
               onClick={() => setActiveTab('individual')}
+              className="auth-tab-btn"
               style={{
-                padding: '9px 18px',
-                borderRadius: '10px',
-                border: 'none',
                 backgroundColor: activeTab === 'individual' ? 'var(--brand-primary)' : 'transparent',
                 color: activeTab === 'individual' ? '#FFFFFF' : 'var(--text-secondary)',
-                fontWeight: 700,
-                fontSize: '0.84rem',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
               }}
             >
               <LogIn size={15} />
@@ -285,18 +267,10 @@ export default function LoginPage() {
 
             <button
               onClick={() => setActiveTab('register')}
+              className="auth-tab-btn"
               style={{
-                padding: '9px 18px',
-                borderRadius: '10px',
-                border: 'none',
                 backgroundColor: activeTab === 'register' ? 'var(--brand-primary)' : 'transparent',
                 color: activeTab === 'register' ? '#FFFFFF' : 'var(--text-secondary)',
-                fontWeight: 700,
-                fontSize: '0.84rem',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
               }}
             >
               <UserPlus size={15} />
@@ -305,18 +279,10 @@ export default function LoginPage() {
 
             <button
               onClick={() => setActiveTab('demo')}
+              className="auth-tab-btn"
               style={{
-                padding: '9px 18px',
-                borderRadius: '10px',
-                border: 'none',
                 backgroundColor: activeTab === 'demo' ? 'var(--brand-primary)' : 'transparent',
                 color: activeTab === 'demo' ? '#FFFFFF' : 'var(--text-secondary)',
-                fontWeight: 700,
-                fontSize: '0.84rem',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
               }}
             >
               <Sparkles size={15} />
@@ -327,9 +293,9 @@ export default function LoginPage() {
 
         {/* TAB 1: INDIVIDUAL SIGN IN (ANY STUDENT OR FACULTY) */}
         {activeTab === 'individual' && (
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '24px', marginBottom: '24px' }}>
+          <div className="individual-signin-grid">
             {/* Left: Interactive Directory of All 28 Students & Faculty */}
-            <div className="glass-panel" style={{ padding: '24px', display: 'flex', flexDirection: 'column' }}>
+            <div className="glass-panel signin-directory-col" style={{ padding: '24px', display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
                 <div>
                   <h3 style={{ fontSize: '1.05rem', fontWeight: 700 }}>
@@ -375,20 +341,21 @@ export default function LoginPage() {
                         justifyContent: 'space-between',
                         cursor: 'pointer',
                         transition: 'background-color 0.15s ease',
+                        gap: '10px',
                       }}
                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(79, 70, 229, 0.08)')}
                       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-surface-elevated)')}
                     >
-                      <div>
-                        <div style={{ fontSize: '0.86rem', fontWeight: 700, color: 'var(--text-main)' }}>
+                      <div style={{ minWidth: 0, flex: 1 }}>
+                        <div style={{ fontSize: '0.86rem', fontWeight: 700, color: 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           {st.name}
                         </div>
-                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)' }}>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           Code: <strong style={{ color: 'var(--brand-primary)' }}>{st.student_id}</strong> • {st.department} • Yr {st.year}
                         </div>
                       </div>
 
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--brand-primary)', fontSize: '0.75rem', fontWeight: 600 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--brand-primary)', fontSize: '0.75rem', fontWeight: 600, flexShrink: 0 }}>
                         <span>Sign In</span>
                         <ArrowRight size={14} />
                       </div>
@@ -408,7 +375,7 @@ export default function LoginPage() {
                       key={f.id}
                       onClick={() => handleDirectLogin(f.username, f.default_password)}
                       style={{
-                        padding: '5px 12px',
+                        padding: '6px 12px',
                         borderRadius: '8px',
                         border: '1px solid var(--border-subtle)',
                         backgroundColor: 'var(--bg-surface-elevated)',
@@ -416,6 +383,7 @@ export default function LoginPage() {
                         fontSize: '0.76rem',
                         fontWeight: 600,
                         cursor: 'pointer',
+                        minHeight: '34px',
                       }}
                     >
                       {f.name} ({f.department.split(' ')[0]})
@@ -426,7 +394,7 @@ export default function LoginPage() {
             </div>
 
             {/* Right: Direct Credentials Form */}
-            <div className="glass-panel" style={{ padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="glass-panel signin-form-col" style={{ padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '6px' }}>
                 Sign In with Credentials
               </h3>
@@ -625,7 +593,7 @@ export default function LoginPage() {
 
               {/* Student specific fields */}
               {regRole === 'student' && (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <div className="form-row-2col">
                   <div>
                     <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '4px' }}>
                       Student Roll / ID
@@ -685,7 +653,7 @@ export default function LoginPage() {
                 </select>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div className="form-row-2col">
                 <div>
                   <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '4px' }}>
                     Desired Username
@@ -753,13 +721,7 @@ export default function LoginPage() {
         {/* TAB 3: 1-CLICK DEMO PERSONAS FOR EVENT JUDGES */}
         {activeTab === 'demo' && (
           <div style={{ marginBottom: '28px' }}>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(310px, 1fr))',
-                gap: '14px',
-              }}
-            >
+            <div className="demo-personas-grid">
               {demoRoles.map((r) => {
                 const Icon = r.icon;
                 return (
@@ -828,6 +790,7 @@ export default function LoginPage() {
 
         {/* Live Status & Compliance Banner */}
         <div
+          className="auth-footer-banner"
           style={{
             display: 'flex',
             flexWrap: 'wrap',
