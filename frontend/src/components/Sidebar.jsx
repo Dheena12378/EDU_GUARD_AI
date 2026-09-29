@@ -1,0 +1,201 @@
+/**
+ * EDU CARD AI — Sidebar Navigation Component
+ */
+
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import {
+  LayoutDashboard,
+  Users,
+  Bell,
+  HeartHandshake,
+  BarChart3,
+  FileText,
+  Settings,
+  Sparkles,
+  ShieldCheck,
+  Database,
+} from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+
+export default function Sidebar() {
+  const { user } = useAuth();
+
+  const navItems = [
+    { to: '/', label: 'Dashboard', icon: LayoutDashboard },
+    { to: '/students', label: 'Students', icon: Users },
+    { to: '/alerts', label: 'Early Alerts', icon: Bell, hideFor: ['student'] },
+    { to: '/interventions', label: 'Support Actions', icon: HeartHandshake },
+    { to: '/analytics', label: 'Trends & Fairness', icon: BarChart3, hideFor: ['student'] },
+    { to: '/reports', label: 'Audit Reports', icon: FileText, hideFor: ['student'] },
+    { to: '/database', label: 'SQLite DB', icon: Database },
+    { to: '/settings', label: 'Settings & Policy', icon: Settings },
+  ];
+
+  const role = user?.role || 'student';
+
+  return (
+    <aside
+      style={{
+        width: '260px',
+        backgroundColor: 'var(--bg-surface)',
+        borderRight: '1px solid var(--border-subtle)',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        position: 'sticky',
+        top: 0,
+        zIndex: 20,
+      }}
+    >
+      {/* Brand Header */}
+      <div
+        style={{
+          padding: '24px 20px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          borderBottom: '1px solid var(--border-subtle)',
+        }}
+      >
+        <div
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '12px',
+            background: 'var(--brand-gradient)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#FFFFFF',
+            boxShadow: '0 4px 12px rgba(79, 70, 229, 0.3)',
+          }}
+        >
+          <Sparkles size={22} />
+        </div>
+        <div>
+          <div
+            style={{
+              fontWeight: 800,
+              fontSize: '1.05rem',
+              letterSpacing: '-0.02em',
+              background: 'var(--brand-gradient)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            EDU CARD AI
+          </div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+            Supportive Academic Monitoring
+          </div>
+        </div>
+      </div>
+
+      {/* Nav Links */}
+      <nav style={{ padding: '16px 12px', flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        {navItems
+          .filter((item) => !item.hideFor || !item.hideFor.includes(role))
+          .map((item) => {
+            const Icon = item.icon;
+            return (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.to === '/'}
+                style={({ isActive }) => ({
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  padding: '10px 14px',
+                  borderRadius: '10px',
+                  fontSize: '0.88rem',
+                  fontWeight: isActive ? 600 : 500,
+                  color: isActive ? '#FFFFFF' : 'var(--text-secondary)',
+                  backgroundColor: isActive ? 'var(--brand-primary)' : 'transparent',
+                  textDecoration: 'none',
+                  transition: 'all 0.15s ease',
+                  boxShadow: isActive ? '0 2px 8px rgba(79, 70, 229, 0.3)' : 'none',
+                })}
+              >
+                <Icon size={18} />
+                <span>{item.label}</span>
+              </NavLink>
+            );
+          })}
+      </nav>
+
+      {/* Ethics & Compliance Pill */}
+      <div style={{ padding: '12px 16px' }}>
+        <div
+          style={{
+            padding: '10px 12px',
+            backgroundColor: 'var(--bg-surface-elevated)',
+            border: '1px solid var(--border-subtle)',
+            borderRadius: '10px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontSize: '0.75rem',
+            color: 'var(--text-secondary)',
+          }}
+        >
+          <ShieldCheck size={16} color="var(--brand-primary)" />
+          <span>DPDP 2023 & FERPA Aligned</span>
+        </div>
+      </div>
+
+      {/* Current User Profile Bar */}
+      <div
+        style={{
+          padding: '16px 20px',
+          borderTop: '1px solid var(--border-subtle)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          backgroundColor: 'var(--bg-surface-elevated)',
+        }}
+      >
+        <div
+          style={{
+            width: '36px',
+            height: '36px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--brand-primary)',
+            color: '#FFFFFF',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontWeight: 700,
+            fontSize: '0.85rem',
+          }}
+        >
+          {user?.full_name ? user.full_name[0] : 'U'}
+        </div>
+        <div style={{ overflow: 'hidden' }}>
+          <div
+            style={{
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            {user?.full_name || 'User'}
+          </div>
+          <div
+            style={{
+              fontSize: '0.72rem',
+              color: 'var(--brand-primary)',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+            }}
+          >
+            {user?.role || 'Guest'}
+          </div>
+        </div>
+      </div>
+    </aside>
+  );
+}

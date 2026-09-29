@@ -1,0 +1,42 @@
+# Environment
+.env
+*.db
+*.db-wal
+*.db-shm
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+*.egg
+
+# ML artifacts
+ml/models/*.joblib
+ml/reports/*.png
+ml/reports/*.csv
+!ml/models/best_model.pkl
+!ml/models/features.json
+
+# Cache & tests
+.pytest_cache/
+__pycache__/
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

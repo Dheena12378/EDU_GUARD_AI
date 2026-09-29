@@ -1,0 +1,241 @@
+/* ============================================================
+   EDU CARD AI — Design System & Stylesheet
+   Modern, Vibrant, Glassmorphic, Accessible
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Color Palette - Light Mode */
+  --bg-primary: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #F1F5F9;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --border-subtle: #E2E8F0;
+  --border-highlight: #CBD5E1;
+
+  --text-main: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+
+  /* Brand Accents */
+  --brand-primary: #4F46E5;
+  --brand-primary-hover: #4338CA;
+  --brand-secondary: #06B6D4;
+  --brand-gradient: linear-gradient(135deg, #4F46E5 0%, #06B6D4 100%);
+  --brand-gradient-soft: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+
+  /* Accessible Indicator Bands (Colour-blind safe: Teal/Emerald, Amber, Royal Purple) */
+  --band-low-text: #059669;
+  --band-low-bg: #ECFDF5;
+  --band-low-border: #A7F3D0;
+  --band-low-glow: rgba(16, 185, 129, 0.15);
+
+  --band-med-text: #D97706;
+  --band-med-bg: #FFFBEB;
+  --band-med-border: #FDE68A;
+  --band-med-glow: rgba(245, 158, 11, 0.15);
+
+  --band-high-text: #7C3AED;
+  --band-high-bg: #F5F3FF;
+  --band-high-border: #DDD6FE;
+  --band-high-glow: rgba(139, 92, 246, 0.2);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.15);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #090D16;
+  --bg-surface: #0F172A;
+  --bg-surface-elevated: #1E293B;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --border-subtle: #1E293B;
+  --border-highlight: #334155;
+
+  --text-main: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+
+  --band-low-text: #34D399;
+  --band-low-bg: rgba(6, 78, 59, 0.3);
+  --band-low-border: rgba(52, 211, 153, 0.3);
+
+  --band-med-text: #FBBF24;
+  --band-med-bg: rgba(120, 53, 15, 0.3);
+  --band-med-border: rgba(251, 191, 36, 0.3);
+
+  --band-high-text: #A78BFA;
+  --band-high-bg: rgba(76, 29, 149, 0.3);
+  --band-high-border: rgba(167, 139, 250, 0.3);
+
+  --shadow-md: 0 4px 12px 0 rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 24px 0 rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphic Panel Utility */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s ease-in-out;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-highlight);
+}
+
+/* App Shell Layout */
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.page-container {
+  padding: 28px 36px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--brand-gradient);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.45);
+}
+
+.btn-secondary {
+  background: var(--bg-surface-elevated);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-secondary:hover {
+  background: var(--border-subtle);
+  border-color: var(--border-highlight);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--brand-primary);
+  border: 1px solid var(--brand-primary);
+}
+
+.btn-outline:hover {
+  background: rgba(79, 70, 229, 0.08);
+}
+
+/* Form Controls */
+.input-field {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.875rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  color: var(--text-main);
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Indicator Badges */
+.badge-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.badge-low {
+  background-color: var(--band-low-bg);
+  color: var(--band-low-text);
+  border: 1px solid var(--band-low-border);
+}
+
+.badge-medium {
+  background-color: var(--band-med-bg);
+  color: var(--band-med-text);
+  border: 1px solid var(--band-med-border);
+}
+
+.badge-high {
+  background-color: var(--band-high-bg);
+  color: var(--band-high-text);
+  border: 1px solid var(--band-high-border);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-highlight);
+  border-radius: 4px;
+}

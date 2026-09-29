@@ -1,0 +1,61 @@
+# ============================================================
+# EDU CARD AI — Threshold & Configuration
+# All tunable parameters in one place
+# ============================================================
+
+# Trend classification thresholds (percentage-point changes)
+trend:
+  increasing_threshold: 5.0        # >= +5 pp change → Increasing
+  decreasing_threshold: -5.0       # <= -5 pp change → Decreasing
+  sudden_change_threshold: -15.0   # <= -15 pp single-week drop → Sudden negative change
+  stable_range: [-5.0, 5.0]        # Within this range → Stable
+
+# EWMA (Exponentially Weighted Moving Average)
+ewma:
+  span: 4                          # 4-week span
+
+# CUSUM (Cumulative Sum Control Chart)
+cusum:
+  threshold: 5.0                   # Alarm threshold
+  drift: 1.0                       # Allowance / slack parameter
+
+# Z-score vs personal baseline
+zscore:
+  personal_baseline_weeks: 3       # First N weeks = personal baseline
+  alert_threshold: -1.5            # Z-score below this fires a signal
+
+# Indicator band boundaries (calibrated probability → band)
+bands:
+  low_max: 0.30                    # [0.00, 0.30) = Low
+  medium_max: 0.60                 # [0.30, 0.60) = Medium
+  high_min: 0.60                   # [0.60, 1.00] = High
+
+# Alert firing rules
+alerts:
+  min_indicator: "Medium"
+  min_independent_signals: 2       # At least N independent signals
+  consecutive_weeks_required: 2    # Signals must persist N consecutive weeks
+  sudden_change_override: true     # A single sudden change can fire an alert
+  cooldown_weeks: 3                # Don't re-alert same student within N weeks
+  max_alerts_per_faculty_per_week: 10
+
+# Feature engineering
+features:
+  baseline_weeks: 3                # First N weeks = personal baseline
+  short_window: 2                  # 2-week rolling average
+  long_window: 4                   # 4-week slope window
+  min_weeks_for_prediction: 4      # Don't predict before week N
+
+# Model training
+model:
+  training_cohort_size: 1500       # Synthetic training cohort size
+  training_weeks: 16               # Weeks of history per student
+  target_horizon_weeks: 4          # Predict decline within next 4 weeks
+  test_size: 0.20
+  random_state: 42
+
+# Privacy & data governance
+privacy:
+  min_cohort_size_for_aggregates: 5   # Min group size for HoD aggregate view
+  audit_log_retention_days: 365
+  session_timeout_minutes: 30
