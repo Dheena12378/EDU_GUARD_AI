@@ -22,6 +22,10 @@ sys.path.insert(0, str(ROOT_DIR))
 
 from backend.app.config import settings
 from backend.app.database import Base
+from backend.app.models import (  # Registers all models with Base.metadata
+    User, Student, WeeklyRecord, Feature,
+    Prediction, Alert, Intervention, AuditLog, SensitiveData,
+)
 
 
 def migrate_to_postgres(target_pg_url: str = None):

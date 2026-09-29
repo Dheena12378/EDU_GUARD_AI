@@ -20,8 +20,8 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
-    # Database — Cloud PostgreSQL or local SQLite
-    DATABASE_URL: str = "sqlite:///./edu_card_ai.db"
+    # Database — Cloud PostgreSQL (Supabase)
+    DATABASE_URL: str = "postgresql://postgres:Dinesh%402006%23@db.ejtuwotccfsymeuxvjxf.supabase.co:5432/postgres"
 
     # JWT Authentication
     SECRET_KEY: str = "dev-secret-key-change-in-production"
@@ -41,14 +41,29 @@ class Settings(BaseSettings):
     def sqlalchemy_database_url(self) -> str:
         """
         Normalizes DATABASE_URL for SQLAlchemy compatibility:
-        - Cloud providers (Heroku, Render, Supabase, Neon) often supply 'postgres://'.
-        - SQLAlchemy 2.0 requires 'postgresql://' or 'postgresql+psycopg2://'.
+        - Converts postgres:// to postgresql+psycopg2://
+        - Strips accidental brackets around password (e.g. [my_pass])
+        - Auto-URL-encodes reserved characters (@, #) in passwords
         """
+        import re
+        import urllib.parse
+
         url = self.DATABASE_URL.strip()
         if url.startswith("postgres://"):
             url = url.replace("postgres://", "postgresql+psycopg2://", 1)
         elif url.startswith("postgresql://") and not url.startswith("postgresql+"):
             url = url.replace("postgresql://", "postgresql+psycopg2://", 1)
+
+        # Handle brackets and special characters in password
+        m = re.match(r"^(postgresql\+psycopg2://)([^:]+):(.*)@([^@]+)$", url)
+        if m:
+            prefix, user, pw, host_part = m.groups()
+            if pw.startswith("[") and pw.endswith("]"):
+                pw = pw[1:-1]
+            if "%" not in pw:
+                pw = urllib.parse.quote_plus(pw)
+            return f"{prefix}{user}:{pw}@{host_part}"
+
         return url
 
     @property
