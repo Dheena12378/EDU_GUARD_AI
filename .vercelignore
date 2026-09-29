@@ -1,0 +1,11 @@
+backend/
+ml/
+tests/
+requirements.txt
+Dockerfile
+render.yaml
+Procfile
+*.db*
+*.pkl
+.pytest_cache/
+__pycache__/
